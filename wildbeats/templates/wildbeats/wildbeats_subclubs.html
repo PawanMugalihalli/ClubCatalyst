@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>{{displayClub.club_name}} - Wildbeats</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            background-color: #171717;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .button-64 {
+            align-items: center;
+            background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 20px;
+            justify-content: center;
+            line-height: 1em;
+            max-width: 100%;
+            min-width: 140px;
+            padding: 3px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+          }
+          
+          .button-64:active,
+          .button-64:hover {
+            outline: 0;
+          }
+          
+          .button-64 span {
+            background-color: rgb(5, 6, 45);
+            padding: 16px 24px;
+            border-radius: 6px;
+            width: 100%;
+            height: 100%;
+            transition: 300ms;
+          }
+          
+          .button-64:hover span {
+            background: none;
+          }
+          
+          @media (min-width: 768px) {
+            .button-64 {
+              font-size: 24px;
+              min-width: 196px;
+            }
+          }
+        header {
+            background-image:url("/media/{{displayClub.logo}}");
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            text-align: center;
+            padding: 100px;
+           
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Add a text shadow */
+            animation: wavyText 2s infinite; /* Wavy text animation */
+        }
+
+        @keyframes wavyText {
+            0% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #FF5733;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 0 20px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #fff;
+            transform: scale(1.1); /* Add a scale effect on hover */
+        }
+
+        section {
+            padding: 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: green;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Add animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Add a pulse animation to the header */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Add a wave animation to the social media links */
+        .social-media-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-media-icons a {
+            font-size: 2rem;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #FF5733;
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-5px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+      footer p {
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+/* Apply styles to the table and its elements */
+.leaders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.leaders-table th, .leaders-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #fff; /* White border */
+    color: #fff; /* White text color */
+}
+
+.leaders-table th {
+    background-color: #333; /* Dark gray background */
+}
+
+.leaders-table tbody tr:nth-child(odd) {
+    background-color: #444; /* Slightly lighter gray background for odd rows */
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to<br>{{displayClub.club_name}} - Wildbeats</h1>
+        <p> {{ displayClub.tagline}}</p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#leaders">Group Leaders</a>
+        <a href="#history">Event History</a>
+        <a href="#upcoming-events">Upcoming Events</a>
+        <a href="#poll">Poll</a>
+        <a href="#suggestion-box">Suggestion Box</a>
+        <a href="#social-media">Social Media</a>
+    </nav>
+    {% for message in messages  %}            
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          <strong>Message : </strong> {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endfor %} 
+    <section id="about">
+        <h2>About Us</h2>
+       <p> {{displayClub.about}}
+       </p>
+    </section>
+
+    <section id="leaders">
+        <h2>Group Leaders</h2>
+        <table class="leaders-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in all_leads %}
+            <tr>
+                <td>{{lead}}</td>
+                <td>Sub Lead</td>
+                <td>sublead{{forloop.counter}}@iiitkottayam.ac.in</td>
+            </tr>
+           {% endfor %}
+            <!-- Add more leaders here -->
+        </tbody>
+    </table>
+</section>
+     <script>
+        function submit_suggestion()
+        {
+            alert("Your feedback is successfully registered.")
+            document.getElementById('floatingTextarea').value = '';
+        }
+    </script> 
+ 
+    
+
+{% if user.is_authenticated%}
+    <section id="suggestion-box">
+        <h2>Suggestion Box</h2>
+       <form method="POST" id="suggestion_submission" action="handle_suggestion/{{slug}}"> <div class="form-floating" method="POST">
+        {% csrf_token %}
+            <textarea class="form-control" placeholder="Leave a comment here" name="floatingTextarea" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea"></label>
+          <!-- HTML !-->
+<button class="button-64" role="button" ><span class="text">Submit</span></button>
+</div>
+       </form>
+         
+    </section>
+    {%else%}
+    <section id="suggestion-box">
+        <h2>Suggestion Box</h2>
+        <button > <a href="{% url 'login'%}"><h3>Login to give suggestions</h3></a></button>
+    </section>
+{% endif%}
+    <section id="social-media">
+        <h2>Connect with Us</h2>
+        <div class="social-media-icons">
+            <a href="{{ displayClub.facebook_handle }}" target="_blank" class="fa fa-facebook"> Facebook</a>
+            <a href="{{ displayClub.linkedin_handle }}" class="fa fa-twitter"> Linkedin</a>
+            <a href="{{ displayClub.instagram_handle }}" class="fa fa-instagram"> Instagram</a>
+            <a href="{{ displayClub.youtube_handle }}" class="fa fa-youtube"> Youtube</a>
+        </div>
+    </section>
+
+    <!-- Footer with Copyright Notice -->
+    <footer>
+        <p>&copy; 2023 {{displayClub.club_name}} - Wildbeats. All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

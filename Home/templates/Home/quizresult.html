@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Glowing Centered Square Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: pink;
+        }
+
+        .centered-box {
+            width: 300px;
+            height: 300px;
+            background-color: #ffffff; /* Changed box color to white */
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin:50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 40px;
+            transition: text-shadow 0.3s ease, color 0.3s ease; /* Added text-shadow and color transitions */
+        }
+
+        .centered-box:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 40px 20px rgb(255, 0, 191); /* Changed glow color to gold */
+        }
+
+        .centered-box:hover .box-content {
+            color: #ff0080; /* Changed text color to gold */
+            text-shadow: 0 0 20px rgb(255, 0, 166); /* Added glow effect to text */
+        }
+
+        .box-text {
+            margin: 10px;
+        }
+
+        .external-link {
+            display: block;
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .external-link:hover {
+            color: #ff00bb;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-box">
+        <div class="box-content">
+            <div class="box-text"><b>{{ my_list.mylist.0 }}</b></div>
+        </div>
+    </div>
+    <a href="{% url 'quizresult2' %}?all={{ my_list.mylist|join:',' }}" class="external-link">Click here to explore all the clubs</a>
+
+</body>
+</html>
